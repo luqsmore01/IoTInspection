@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Transformer Inspection System</title>
+    <link rel="stylesheet" href="txform.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <button id="back-btn" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</button>
+            </div>
+            <h1>IoT-Enabled Smart Inspection System</h1>
+            <h2>Transformer Inspection Form</h2>
+        </header>
+
+        <section class="transformer-details">
+            <h3>Transformer Details</h3>
+            <div class="form-group">
+                <label for="kks">Transformer KKS:</label>
+                <input type="text" id="kks" placeholder="00BCT21-GT010">
+            </div>
+            <div class="form-group">
+                <label for="name">Transformer Name:</label>
+                <input type="text" id="name" placeholder="11/3.3KV Coal Handling & Coal Unloading Board Tx A">
+            </div>
+            <div class="form-group">
+                <label for="serial">Serial No:</label>
+                <input type="text" id="serial" placeholder="62570KC0037-002">
+            </div>
+            <div class="form-group">
+                <label for="manufacturer">Manufacturer:</label>
+                <input type="text" id="manufacturer" placeholder="Hyundai">
+            </div>
+            <div class="form-group">
+                <label for="year">Year of Manufactured:</label>
+                <input type="number" id="year" placeholder="2007">
+            </div>
+            <div class="form-group">
+                <label for="hvv">HV Phase (Volt):</label>
+                <input type="number" id="hvv" placeholder="11000">
+            </div>
+            <div class="form-group">
+                <label for="lvv">LV Phase (Volt):</label>
+                <input type="number" id="lvv" placeholder="3465">
+            </div>
+            <div class="form-group">
+                <label for="capacity">Rated Capacity (MVA):</label>
+                <input type="text" id="capacity" placeholder="13MVA">
+            </div>
+            <div class="form-group">
+                <label for="frequency">Rated Frequency (Hz):</label>
+                <input type="number" id="frequency" placeholder="50">
+            </div>
+            <div class="form-group">
+                <label for="vector">Vector Group:</label>
+                <input type="text" id="vector" placeholder="Dyn11">
+            </div>
+        </section>
+
+        <section class="inspection-details">
+            <h3>Inspection Details</h3>
+            <div class="form-group">
+                <label for="date">Date of Testing:</label>
+                <input type="date" id="date">
+            </div>
+            <div class="form-group">
+                <label for="location">Test Location:</label>
+                <input type="text" id="location" placeholder="Coal Handling Plant">
+            </div>
+            <div class="form-group">
+                <label for="temp">Temperature (°C):</label>
+                <input type="number" step="0.01" id="temp" placeholder="32.50">
+            </div>
+            <div class="form-group">
+                <label for="humidity">Humidity (%):</label>
+                <input type="number" step="0.01" id="humidity" placeholder="61.90">
+            </div>
+            <div class="form-group">
+                <label for="voltage">Applied Voltage (kV):</label>
+                <input type="number" step="0.01" id="voltage" placeholder="5.00">
+            </div>
+        </section>
+
+        <section class="test-results">
+            <h3>Test Results</h3>
+            <table id="results-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>HV Winding (V)</th>
+                        <th>LV Winding (V)</th>
+                        <th>Tap</th>
+                        <th>R (mA)</th>
+                        <th>Y (mA)</th>
+                        <th>B (mA)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be added dynamically -->
+                </tbody>
+            </table>
+            <button id="add-row">Add Test Result</button>
+        </section>
+
+        <section class="actions">
+            <button id="save-btn">Save Inspection</button>
+            <button id="clear-btn">Clear Form</button>
+            <button id="back-btn-2" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</button>
+            <div id="status-message"></div>
+        </section>
+    </div>
+
+    <script src="txform.js"></script>
+</body>
+</html>
