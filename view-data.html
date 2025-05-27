@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Inspection Data | Smart Inspection System</title>
+    <link rel="stylesheet" href="view-data.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1><i class="fas fa-database"></i> Inspection Records</h1>
+            <div class="header-actions">
+                <button id="back-btn"><i class="fas fa-arrow-left"></i> Dashboard</button>
+                <button id="export-csv"><i class="fas fa-file-csv"></i> Export CSV</button>
+            </div>
+        </header>
+
+        <!-- Filters Section -->
+        <section class="filters">
+            <div class="filter-group">
+                <label for="date-filter">Date Range:</label>
+                <select id="date-filter">
+                    <option value="all">All Dates</option>
+                    <option value="today">Today</option>
+                    <option value="week">This Week</option>
+                    <option value="month">This Month</option>
+                    <option value="custom">Custom Range</option>
+                </select>
+            </div>
+            <div class="filter-group" id="custom-date-range">
+                <label for="start-date">From:</label>
+                <input type="date" id="start-date">
+                <label for="end-date">To:</label>
+                <input type="date" id="end-date">
+            </div>
+            <button id="apply-filters">Apply Filters</button>
+        </section>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Loading Indicator -->
+            <div id="loading-indicator">
+                <div class="spinner"></div>
+                <p>Loading inspection data...</p>
+            </div>
+
+            <!-- Inspections Table -->
+            <div class="table-container">
+                <table id="inspections-table">
+                    <thead>
+                        <tr>
+                            <th>KKS Code</th>
+                            <th>Transformer Name</th>
+                            <th>Inspection Date</th>
+                            <th>Location</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Inspection Details Section -->
+            <div id="inspection-details" class="inspection-details">
+                <div class="details-header">
+                    <h2>Inspection Details</h2>
+                    <div class="details-actions">
+                        <button id="show-graph" class="graph-btn"><i class="fas fa-chart-line"></i> View Graph</button>
+                        <button id="close-details"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="details-content">
+                    <div class="details-section">
+                        <h3>Transformer Information</h3>
+                        <div id="transformer-info" class="info-grid"></div>
+                    </div>
+                    <div class="details-section">
+                        <h3>Inspection Parameters</h3>
+                        <div id="inspection-info" class="info-grid"></div>
+                    </div>
+                    <div class="details-section">
+                        <h3>Test Results</h3>
+                        <div class="table-container">
+                            <table id="results-table">
+                                <thead>
+                                    <tr>
+                                        <th>Tap</th>
+                                        <th>HV (V)</th>
+                                        <th>LV (V)</th>
+                                        <th>R (mA)</th>
+                                        <th>Y (mA)</th>
+                                        <th>B (mA)</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Graph Modal -->
+        <div id="graph-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Excitation Current Measurement</h2>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="chart-container">
+                        <canvas id="current-chart"></canvas>
+                    </div>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <span class="legend-color r-phase"></span>
+                            <span>R Phase</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color y-phase"></span>
+                            <span>Y Phase</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color b-phase"></span>
+                            <span>B Phase</span>
+                        </div>
+                    </div>
+                    <div class="remarks-section">
+                        <h3>Remarks</h3>
+                        <p id="graph-remarks">Satisfactorily</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="print-graph"><i class="fas fa-print"></i> Print Report</button>
+                    <button id="export-graph"><i class="fas fa-image"></i> Export as Image</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Main JavaScript -->
+    <script src="view-data.js"></script>
+</body>
+</html>
